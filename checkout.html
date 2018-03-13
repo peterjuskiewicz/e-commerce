@@ -107,7 +107,6 @@
             </div>
             <div id="panel1" class="panel-collapse collapse in">
               <div class="panel-body">
-                <div class="col-md-6 col-sm-12 col-xs-12">
 
 <!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
 <!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
@@ -120,6 +119,7 @@
 <!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
 
 
+                <div class="col-md-6 col-sm-12 col-xs-12">
                    <p class="font-16 font-bold text-uppercase mar-bot-20">register</p>
                   <p class="text-uppercase">Not registered yet? Please register</p>
                   <div class="line-full mar-bot-20"></div>
@@ -127,36 +127,36 @@
                     <li>
                       <div class="">
                         <p>Name <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="name-register">
                       </div>
                     </li>
                     <li>
                       <div class="">
                         <p>Address <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="address-register">
                       </div>
                     </li>
                     <li>
                       <div class="">
                         <p>Email Address <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="email-register">
                       </div>
                     </li>
                     <li>
                       <div class="">
                         <p>Password <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="password-register">
                       </div>
                     </li>
                     <li>
                       <div class="">
                         <p>Repeat Password <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="password-repeat-register">
                       </div>
                     </li>
                   </ul>
-                  <a class="cart pull-left" href="#" style="margin-right:16px;">login</a>
-                  <p style="padding:8px;">Forgot your password?</p>
+                  <a class="cart pull-left" href="#" style="margin-right:16px;" id="register-button">
+                  register</a>
                 </div>
 
 
@@ -177,19 +177,29 @@
                     <li>
                       <div class="">
                         <p>Email Address <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="email-login">
                       </div>
                     </li>
                     <li>
                       <div class="">
                         <p>Password <span class="pink">*</span></p>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="password-login">
                       </div>
                     </li>
                   </ul>
-                  <a class="cart pull-left" href="#" style="margin-right:16px;">login</a>
+                  <a class="cart pull-left" href="#" style="margin-right:16px;" id="login-button">login</a>
                   <p style="padding:8px;">Forgot your password?</p>
                 </div>
+
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+<!-- [[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]] -->
+
               </div>
             </div>
           </div>
@@ -323,6 +333,8 @@
   </div>
 </div>
 </footer>
+
+<script src="js/register.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/js/jquery-v11.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
