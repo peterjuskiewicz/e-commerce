@@ -5,6 +5,28 @@ function loginRegister() {
     var registerButton = document.getElementById('register-button');
     var loginButton = document.getElementById('login-button');
 
+    var registerText1 = document.getElementById('register-text-1');
+    var registerText2 = document.getElementById('register-text-2');
+
+    var loginField = document.getElementById('login-field');
+
+
+//  Change text depending if user is registered
+
+    if(sessionStorage.getItem('loggedUser')) {
+        registerText1.innerHTML = 'update details';
+        registerText2.innerHTML = 'Want to update details?';
+        registerButton.innerHTML = 'update';
+        loginField.setAttribute('visibility', 'hidden');
+
+
+    }else {
+        registerText1.innerHTML = 'register';
+        registerText2.innerHTML = 'Not registered yet? Please register';
+        registerButton.innerHTML = 'register';
+        loginField.removeAttribute('visibility');
+    }
+
 
     registerButton.addEventListener('click', () => {
 
@@ -56,7 +78,10 @@ function loginRegister() {
             'Content-Type': 'application/x-www-form-urlencoded'
             })
         })
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res);
+            location.reload();
+        })
         .catch(error => console.error('Error:', error))
 
 
@@ -81,7 +106,14 @@ function loginRegister() {
                         var responseData = JSON.parse(request.responseText)[0];
 
                         //Add data to page
-                        console.log(responseData);
+                        if(responseData.userPassword === loginPassword
+                            && !sessionStorage.getItem('loggedUser')){
+                            console.log(responseData);
+                            sessionStorage.setItem('loggedUser', JSON.stringify(responseData));
+                            location.reload();
+
+                        }
+
                     }
                     else
                         alert("Error communicating with server: " + request.status);
