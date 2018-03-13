@@ -63,5 +63,53 @@ function loginRegister() {
 
     });
 
+    loginButton.addEventListener('click', () => {
+
+        var loginEmail = document.getElementById('email-login').value;
+        var loginPassword = document.getElementById('password-login').value;
+        var url = '../php/login.php';
+
+
+                //Create request object
+                var request = new XMLHttpRequest();
+
+                //Create event handler that specifies what should happen when server responds
+                request.onload = function(){
+                    //Check HTTP status code
+                    if(request.status === 200){
+                        //Get data from server
+                        var responseData = JSON.parse(request.responseText)[0];
+
+                        //Add data to page
+                        console.log(responseData);
+                    }
+                    else
+                        alert("Error communicating with server: " + request.status);
+                };
+
+                //Set up request with HTTP method and URL
+                request.open("POST", url);
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                //Send request
+                request.send('email=' + loginEmail);
+
+
+
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: 'email=' + loginEmail,
+        //     headers: new Headers({
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        //     })
+        // })
+        // .then((response) => {
+        //     console.log(response);
+        // })
+        // .catch(error => console.error('Error:', error))
+        // .then(response => console.log(response));
+
+    })
+
 
 }
