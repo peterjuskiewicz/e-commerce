@@ -17,14 +17,18 @@ function loginRegister() {
         registerText1.innerHTML = 'update details';
         registerText2.innerHTML = 'Want to update details?';
         registerButton.innerHTML = 'update';
+        // For some reason it isn't working
+        // CHECK CHECK CHECK CHECK CHECK
         loginField.setAttribute('visibility', 'hidden');
+        loginField.setAttribute('opacity', 0);
 
 
     }else {
         registerText1.innerHTML = 'register';
         registerText2.innerHTML = 'Not registered yet? Please register';
         registerButton.innerHTML = 'register';
-        loginField.removeAttribute('visibility');
+        loginField.setAttribute('visibility', 'visible');
+        loginField.setAttribute('opacity', 1);
     }
 
 
@@ -43,7 +47,7 @@ function loginRegister() {
         //  update details
         if(sessionStorage.getItem('loggedUser')){
             const url = '../php/update.php';
-            let customerId = sessionStorage.getItem('customerId');
+            let customerId = sessionStorage.getItem('loggedUser');
 
 
         console.log(data);
@@ -133,11 +137,8 @@ function loginRegister() {
                         if(responseData.userPassword === loginPassword
                             && !sessionStorage.getItem('loggedUser')){
                             console.log(responseData);
-                            sessionStorage.setItem('loggedUser', JSON.stringify(responseData));
+                            sessionStorage.setItem('loggedUser', JSON.stringify(responseData._id.$id));
 
-                            // save customerId to localStorage
-                            var customerId = JSON.parse(sessionStorage.getItem('loggedUser'))._id.$id;
-                            sessionStorage.setItem('customerId', customerId);
                             location.reload();
 
                         }
