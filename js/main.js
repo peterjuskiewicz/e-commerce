@@ -1,23 +1,36 @@
 window.onload = buildTable;
 
 
-//function that will display products index.html
+//function that will allow to search products by name
 
 function buildTable() {
+var search = document.getElementById('search-field');
 
-    var productsList = document.getElementById('products_list');
+    search.addEventListener('keydown', (e) => {
 
-    fetch('../php/insertProducts.php')
-    .then(function(response){
-        return response.text();
+        if(e.key == 'Enter'){
+
+            var searchProduct = search.value;
+            var productsList = document.getElementById('products_list');
+            console.log(searchProduct);
+            fetch('../php/insertProducts.php', {
+                method: 'POST',
+                body: 'name=' + searchProduct,
+                headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+                })
+            })
+            .then(function(response){
+            return response.text();
+            })
+            .then(function(response){
+            console.log(response);
+            productsList.innerHTML = response;
+            })
+            .catch(function(e){
+                console.log(e);
+            })
+            }
     })
-    .then(function(response){
-        productsList.innerHTML = response;
-    })
-    .catch(function(e){
-        console.log(e);
-    })
-
-
 }
 
