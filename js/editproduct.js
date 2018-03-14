@@ -1,7 +1,6 @@
 window.onload = editProduct;
 
-
-//function that will display products index.html
+// display products
 
 function editProduct() {
 
@@ -13,7 +12,7 @@ function editProduct() {
     })
     .then(function(response){
 
-        var content = '<p class="font-16 font-bold text-uppercase mar-bot-20">edit product</p>';
+        var content = '';
 
         for(var i = 0; i < response.length; i++){
 
@@ -23,8 +22,9 @@ function editProduct() {
             <p class="font-15">${response[i].productName}</p>
             <p class="font-15 orange font-bold"><del class="light-grey lighter">
             ${response[i].productPrice * 2}</del>${response[i].productPrice}</p>
-            <div class="clearfix"> <a class="cart" href="#">Edit</a> </div>
-            <div class="clearfix"> <a class="cart" href="#">Remove</a> </div>
+            <div class="clearfix"> <button class="cart" onclick="editProduct('${response[i]._id.$id}')">Edit</button> </div>
+            <div class="clearfix"> <button class="cart" onclick="deleteProduct('${response[i]._id.$id}')">Delete</button> </div>
+            </div>
             </div>
             `
             content += product;
@@ -35,6 +35,28 @@ function editProduct() {
     .catch(function(e){
         console.log(e);
     })
+
+
+}
+
+function deleteProduct(id) {
+
+console.log(id);
+
+fetch('../php/deleteproduct.php', {
+            method: 'POST',
+            body: 'id=' + id,
+            headers: new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        })
+        .then(res => {
+            console.log(res);
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+
+
 
 
 }
