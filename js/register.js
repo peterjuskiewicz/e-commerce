@@ -35,14 +35,54 @@ function loginRegister() {
         var registerEmail = document.getElementById('email-register').value;
         var registerPassword = document.getElementById('password-register').value;
         var registerRepeatPassword = document.getElementById('password-repeat-register').value;
-
-        var url = '../php/register.php';
         var data = {username: registerName,
                     userAddres: registerAddress,
                     userEmail: registerEmail,
                     userPassword: registerPassword};
 
+        //  update details
+        if(sessionStorage.getItem('loggedUser')){
+            const url = '../php/update.php';
+            let customerId = sessionStorage.getItem('customerId');
+
+
         console.log(data);
+
+        fetch(url, {
+            method: 'POST',
+            body: 'customerId=' + customerId + '&'
+            + 'data=' + JSON.stringify(data),
+            headers: new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        })
+        .then(res => {
+            console.log(res);
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error))
+        // register new user
+        }else {
+
+            const url = '../php/register.php';
+
+            console.log(data);
+
+            fetch(url, {
+                method: 'POST',
+                body: 'data=' + JSON.stringify(data),
+                headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+                })
+            })
+            .then(res => {
+                console.log(res);
+                location.reload();
+            })
+            .catch(error => console.error('Error:', error))
+
+        }
+
 
 
 
@@ -70,22 +110,6 @@ function loginRegister() {
                 // //Send request
                 // request.send('data=' + JSON.stringify(data));
 
-
-        fetch(url, {
-            method: 'POST',
-            body: 'data=' + JSON.stringify(data),
-            headers: new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded'
-            })
-        })
-        .then(res => {
-            console.log(res);
-            location.reload();
-        })
-        .catch(error => console.error('Error:', error))
-
-
-
     });
 
     loginButton.addEventListener('click', () => {
@@ -105,11 +129,15 @@ function loginRegister() {
                         //Get data from server
                         var responseData = JSON.parse(request.responseText)[0];
 
-                        //Add data to page
+                        //Save customer details to localStorage
                         if(responseData.userPassword === loginPassword
                             && !sessionStorage.getItem('loggedUser')){
                             console.log(responseData);
                             sessionStorage.setItem('loggedUser', JSON.stringify(responseData));
+
+                            // save customerId to localStorage
+                            var customerId = JSON.parse(sessionStorage.getItem('loggedUser'))._id.$id;
+                            sessionStorage.setItem('customerId', customerId);
                             location.reload();
 
                         }
@@ -144,4 +172,4 @@ function loginRegister() {
     })
 
 
-}
+    }
