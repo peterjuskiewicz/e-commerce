@@ -6,35 +6,11 @@ window.onload = basketTest;
 
 function basketTest(){
 
-// test objects - will be removed once database funcionality works
-var testObject = {
-    productId: 1923,
-    productName: 'testName',
-    imagePath: 'assets/images/cart-img.jpg',
-    unitPrice: 999
-}
-
-var testObject2 = {
-    productId: 1111,
-    productName: 'testName2',
-    imagePath: 'assets/images/cart-img.jpg',
-    unitPrice: 199
-}
-
-var arrayOfObjects = [];
-
-arrayOfObjects.push(testObject);
-arrayOfObjects.push(testObject2);
-
-
-localStorage.setItem('testProduct', JSON.stringify(arrayOfObjects));
-
-
 
 
 // the program starts here
 
-lengthOfArray = JSON.parse(localStorage.getItem('testProduct')).length;
+lengthOfArray = JSON.parse(localStorage.getItem('basket')).length;
 
 
 
@@ -46,15 +22,15 @@ lengthOfArray = JSON.parse(localStorage.getItem('testProduct')).length;
 
     const cartTable = document.getElementById('cart-table');
 
-    let retrivedObject = JSON.parse(localStorage.getItem('testProduct'));
+    let retrivedObject = JSON.parse(localStorage.getItem('basket'));
 
     // create table row element
     for(var i = 0; i < length; i++){
 
-        imgSource = retrivedObject[i].imagePath;
+        imgSource = retrivedObject[i].productImagePath;
         productName = retrivedObject[i].productName;
-        unitPrice = retrivedObject[i].unitPrice;
-        productId = retrivedObject[i].productId;
+        unitPrice = retrivedObject[i].productPrice;
+        productId = retrivedObject[i]._id.$id;
 
         var totalPrice = unitPrice * 2;
 

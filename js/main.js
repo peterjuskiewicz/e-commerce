@@ -1,6 +1,5 @@
 window.onload = buildTable;
 
-
 //function that will allow to search products by name
 
 function buildTable() {
@@ -32,5 +31,45 @@ var search = document.getElementById('search-field');
             })
             }
     })
+}
+
+function addToBasket(id){
+
+    var basketArray;
+
+    if(!localStorage.getItem('basket')){
+        basketArray = [];
+    } else {
+        basketArray = JSON.parse(localStorage.getItem('basket'));
+    }
+
+
+    fetch('../php/searchProductById.php', {
+                method: 'POST',
+                body: 'id=' + id,
+                headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+                })
+            })
+    .then(function(response){
+        console.log(response);
+        return response.json();
+    })
+    .then(function(response){
+        console.log(response);
+        basketArray.push(response[0])
+        localStorage.setItem('basket', JSON.stringify(basketArray));
+    })
+    .catch(function(e){
+        console.log(e);
+    })
+
+    // var product = {'productId': id,
+    //                'productName': 'x'}
+
+
+
+    // localStorage.setItem('basket', )
+
 }
 

@@ -28,7 +28,9 @@ foreach ($cursor as $cust){
    echo '<p class="font-15">' . $cust['productName'] . '</p>';
    echo    '<p class="font-15 orange font-bold"><del class="light-grey lighter">' .
    $cust['productPrice'] * 2 . '</del>' . $cust['productPrice'] . '</p>';
-   echo '<div class="clearfix"> <a class="cart" href="#">add to cart</a> </div>';;
+   echo '<div class="clearfix">; <button class="cart" onclick="addToBasket(';
+   echo  "'" . trim($cust['_id']) . "'";
+   echo ')">Add to basket</button> </div>';
    echo "</div>";
 }
 
