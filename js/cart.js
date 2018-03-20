@@ -6,13 +6,12 @@ window.onload = basketTest;
 
 function basketTest(){
 
+// find the lenght of array from local storage
+
+let lengthOfArray = JSON.parse(localStorage.getItem('basket')).length;
 
 
-// the program starts here
-
-lengthOfArray = JSON.parse(localStorage.getItem('basket')).length;
-
-
+// build the table
 
     function insertTableRow(length){
 
@@ -21,6 +20,8 @@ lengthOfArray = JSON.parse(localStorage.getItem('basket')).length;
     let table = ""
 
     const cartTable = document.getElementById('cart-table');
+
+// get the basket array from local storage
 
     let retrivedObject = JSON.parse(localStorage.getItem('basket'));
 
@@ -48,9 +49,52 @@ lengthOfArray = JSON.parse(localStorage.getItem('basket')).length;
         table += tableRow;
     }
 
+// insert table to the page
 
     cartTable.innerHTML = table;
     }
     insertTableRow(lengthOfArray);
 }
+
+const placeOrderButton = document.getElementById('place-order-button');
+
+placeOrderButton.addEventListener('click', () => {
+
+        const thankUMessage = document.getElementById('main');
+
+        let customerId = sessionStorage.getItem('loggedUser');
+        let productIdArray = [];
+        let basket = JSON.parse(localStorage.getItem('basket'));
+
+        for(let i = 0; i < basket.length; i++){
+            productIdArray.push(basket[i]._id.$id);
+        }
+        console.log(productIdArray);
+        //  add basket to orders in db
+        const url = '../php/checkout.php';
+
+        fetch(url, {
+            method: 'POST',
+            body: 'customerId=' + JSON.stringify(customerId) + '&'
+            + 'data=' + JSON.stringify(productIdArray),
+            headers: new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        })
+        .then(res => {
+            res.text();
+        })
+        .then(res => {
+            console.log(res);
+            thankUMessage.innerHTML = `
+                <div>Thank you for your order</div>
+            `
+        })
+        .catch(error => console.error('Error:', error));
+
+
+});
+
+
+
 
