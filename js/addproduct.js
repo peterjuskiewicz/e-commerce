@@ -2,17 +2,17 @@ window.onload = addProduct;
 
 function addProduct() {
 
-    var addButton = document.getElementById('add-button');
+    let addButton = document.getElementById('add-button');
 
 
     addButton.addEventListener('click', () => {
 
-        var addName = document.getElementById('name-add').value;
-        var addDescription = document.getElementById('description-add').value;
-        var addPrice = document.getElementById('price-add').value;
-        var addSize = document.getElementById('size-add').value;
-        var addImagePath = document.getElementById('image-path-add').value;
-        var data = {productName: addName,
+        let addName = document.getElementById('name-add').value;
+        let addDescription = document.getElementById('description-add').value;
+        let addPrice = document.getElementById('price-add').value;
+        let addSize = document.getElementById('size-add').value;
+        let addImagePath = document.getElementById('image-path-add').value;
+        let data = {productName: addName,
                     productDescription: addDescription,
                     productPrice: addPrice,
                     productSize: addSize,

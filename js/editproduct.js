@@ -4,7 +4,7 @@ window.onload = editProduct;
 
 function editProduct() {
 
-    var productsList = document.getElementById('products-display');
+    let productsList = document.getElementById('products-display');
 
     fetch('../php/editproduct.php')
     .then(function(response){
@@ -12,11 +12,11 @@ function editProduct() {
     })
     .then(function(response){
 
-        var content = '';
+        let content = '';
 
-        for(var i = 0; i < response.length; i++){
+        for(let i = 0; i < response.length; i++){
 
-            var product = `<div class="pro-item col-md-3 col-sm-3 " id="${response[i]._id.$id}">
+            let product = `<div class="pro-item col-md-3 col-sm-3 " id="${response[i]._id.$id}">
             <a href="details2.html">
             <img src="${response[i].productImagePath}" alt="" class="img-responsive"></a>
             <p class="font-15">${response[i].productName}</p>

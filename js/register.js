@@ -2,13 +2,13 @@ window.onload = loginRegister;
 
 function loginRegister() {
 
-    var registerButton = document.getElementById('register-button');
-    var loginButton = document.getElementById('login-button');
+    let registerButton = document.getElementById('register-button');
+    let loginButton = document.getElementById('login-button');
 
-    var registerText1 = document.getElementById('register-text-1');
-    var registerText2 = document.getElementById('register-text-2');
+    let registerText1 = document.getElementById('register-text-1');
+    let registerText2 = document.getElementById('register-text-2');
 
-    var loginField = document.getElementById('login-field');
+    let loginField = document.getElementById('login-field');
 
 
 //  Change text depending if user is registered
@@ -34,12 +34,12 @@ function loginRegister() {
 
     registerButton.addEventListener('click', () => {
 
-        var registerName = document.getElementById('name-register').value;
-        var registerAddress = document.getElementById('address-register').value;
-        var registerEmail = document.getElementById('email-register').value;
-        var registerPassword = document.getElementById('password-register').value;
-        var registerRepeatPassword = document.getElementById('password-repeat-register').value;
-        var data = {username: registerName,
+        let registerName = document.getElementById('name-register').value;
+        let registerAddress = document.getElementById('address-register').value;
+        let registerEmail = document.getElementById('email-register').value;
+        let registerPassword = document.getElementById('password-register').value;
+        let registerRepeatPassword = document.getElementById('password-repeat-register').value;
+        let data = {username: registerName,
                     userAddres: registerAddress,
                     userEmail: registerEmail,
                     userPassword: registerPassword};
@@ -91,14 +91,14 @@ function loginRegister() {
 
 
                 // //Create request object
-                // var request = new XMLHttpRequest();
+                // let request = new XMLHttpRequest();
 
                 // //Create event handler that specifies what should happen when server responds
                 // request.onload = function(){
                 //     //Check HTTP status code
                 //     if(request.status === 200){
                 //         //Get data from server
-                //         var responseData = request.responseText;
+                //         let responseData = request.responseText;
 
                 //         //Add data to page
                 //         console.log(responseData);
@@ -118,20 +118,20 @@ function loginRegister() {
 
     loginButton.addEventListener('click', () => {
 
-        var loginEmail = document.getElementById('email-login').value;
-        var loginPassword = document.getElementById('password-login').value;
-        var url = '../php/login.php';
+        let loginEmail = document.getElementById('email-login').value;
+        let loginPassword = document.getElementById('password-login').value;
+        let url = '../php/login.php';
 
 
                 //Create request object
-                var request = new XMLHttpRequest();
+                let request = new XMLHttpRequest();
 
                 //Create event handler that specifies what should happen when server responds
                 request.onload = function(){
                     //Check HTTP status code
                     if(request.status === 200){
                         //Get data from server
-                        var responseData = JSON.parse(request.responseText)[0];
+                        let responseData = JSON.parse(request.responseText)[0];
 
                         //Save customer details to localStorage
                         if(responseData.userPassword === loginPassword

@@ -26,14 +26,14 @@ let lengthOfArray = JSON.parse(localStorage.getItem('basket')).length;
     let retrivedObject = JSON.parse(localStorage.getItem('basket'));
 
     // create table row element
-    for(var i = 0; i < length; i++){
+    for(let i = 0; i < length; i++){
 
         imgSource = retrivedObject[i].productImagePath;
         productName = retrivedObject[i].productName;
         unitPrice = retrivedObject[i].productPrice;
         productId = retrivedObject[i]._id.$id;
 
-        var totalPrice = unitPrice * 2;
+        let totalPrice = unitPrice * 2;
 
         let tableRow = `<tr id="${productId}">
                     <th scope="row">

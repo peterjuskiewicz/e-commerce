@@ -3,14 +3,14 @@ window.onload = buildTable;
 //function that will allow to search products by name
 
 function buildTable() {
-var search = document.getElementById('search-field');
+let search = document.getElementById('search-field');
 
     search.addEventListener('keydown', (e) => {
 
         if(e.key == 'Enter'){
 
-            var searchProduct = search.value;
-            var productsList = document.getElementById('products_list');
+            let searchProduct = search.value;
+            let productsList = document.getElementById('products_list');
             console.log(searchProduct);
             fetch('../php/insertProducts.php', {
                 method: 'POST',
@@ -35,7 +35,7 @@ var search = document.getElementById('search-field');
 
 function addToBasket(id){
 
-    var basketArray;
+    let basketArray;
 
     if(!localStorage.getItem('basket')){
         basketArray = [];
@@ -64,7 +64,7 @@ function addToBasket(id){
         console.log(e);
     })
 
-    // var product = {'productId': id,
+    // let product = {'productId': id,
     //                'productName': 'x'}
 
 
