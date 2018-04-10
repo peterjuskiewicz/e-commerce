@@ -9,14 +9,14 @@ To run this project you need to have mongodb database on your machine.
 ### Running mongoDB server
 
 ```
-mongo
+mongod
 ```
 
 
 ### Running mongoDB client
 
 ```
-mongod
+mongo
 ```
 
 ### Start php server
