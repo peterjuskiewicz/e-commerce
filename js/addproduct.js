@@ -1,5 +1,7 @@
 window.onload = addProduct;
 
+// Function that will add product to the database
+
 function addProduct() {
 
     let addButton = document.getElementById('add-button');
@@ -23,7 +25,7 @@ function addProduct() {
 
 
         console.log(data);
-
+// AJAX
         fetch(url, {
             method: 'POST',
             body: 'data=' + JSON.stringify(data),
@@ -36,7 +38,6 @@ function addProduct() {
             location.reload();
         })
         .catch(error => console.error('Error:', error))
-        // register new user
 
     });
 

@@ -1,6 +1,6 @@
 window.onload = editProduct;
 
-// display products
+// Fuction that will display products and allow edition
 
 function editProduct() {
 
@@ -38,6 +38,8 @@ function editProduct() {
 
 
 }
+
+// remove product from database
 
 function deleteProduct(id) {
 

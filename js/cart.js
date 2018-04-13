@@ -86,6 +86,7 @@ placeOrderButton.addEventListener('click', () => {
         })
         .then(res => {
             console.log(res);
+            localStorage.basket = '[]';
             thankUMessage.innerHTML = `
                 <div>Thank you for your order</div>
             `

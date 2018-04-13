@@ -17,8 +17,7 @@ function loginRegister() {
         registerText1.innerHTML = 'update details';
         registerText2.innerHTML = 'Want to update details?';
         registerButton.innerHTML = 'update';
-        // For some reason it isn't working
-        // CHECK CHECK CHECK CHECK CHECK
+
         loginField.setAttribute('visibility', 'hidden');
         loginField.setAttribute('opacity', 0);
 
@@ -31,6 +30,7 @@ function loginRegister() {
         loginField.setAttribute('opacity', 1);
     }
 
+// Register the user
 
     registerButton.addEventListener('click', () => {
 
@@ -52,6 +52,7 @@ function loginRegister() {
 
         console.log(data);
 
+// AJAX
         fetch(url, {
             method: 'POST',
             body: 'customerId=' + customerId + '&'
@@ -86,34 +87,6 @@ function loginRegister() {
             .catch(error => console.error('Error:', error))
 
         }
-
-
-
-
-                // //Create request object
-                // let request = new XMLHttpRequest();
-
-                // //Create event handler that specifies what should happen when server responds
-                // request.onload = function(){
-                //     //Check HTTP status code
-                //     if(request.status === 200){
-                //         //Get data from server
-                //         let responseData = request.responseText;
-
-                //         //Add data to page
-                //         console.log(responseData);
-                //     }
-                //     else
-                //         alert("Error communicating with server: " + request.status);
-                // };
-
-                // //Set up request with HTTP method and URL
-                // request.open("POST", url);
-                // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                // //Send request
-                // request.send('data=' + JSON.stringify(data));
-
     });
 
     loginButton.addEventListener('click', () => {
@@ -154,22 +127,6 @@ function loginRegister() {
 
                 //Send request
                 request.send('email=' + loginEmail);
-
-
-
-        // fetch(url, {
-        //     method: 'POST',
-        //     body: 'email=' + loginEmail,
-        //     headers: new Headers({
-        //     'Content-Type': 'application/x-www-form-urlencoded'
-        //     })
-        // })
-        // .then((response) => {
-        //     console.log(response);
-        // })
-        // .catch(error => console.error('Error:', error))
-        // .then(response => console.log(response));
-
     })
 
 
