@@ -33,19 +33,21 @@
         <div class="line-full mar-bot-20"></div>
         <ul class="list-unstyled checkout-right">
           <li>
-            <div class="">
-              <p>Email Address <span class="pink">*</span></p>
-              <input type="text" class="form-control">
+              <form name="login">
+            <div class="login">
+              <p>Username<span class="pink">*</span></p>
+              <input type="text" class="form-control" name="userid">
             </div>
           </li>
           <li>
             <div class="">
               <p>Password <span class="pink">*</span></p>
-              <input type="text" class="form-control">
+              <input type="password" class="form-control" name="pswrd">
             </div>
           </li>
         </ul>
-        <a class="cart pull-left" href="#" style="margin-right:16px;">login</a>
+        <input type="button" onclick="check(this.form)" value="Login">
+      </form>
       </div>
   </div>
   </div>
@@ -64,8 +66,8 @@
 <script src="assets/js/bootstrap.min.js"></script> 
 <script src="assets/js/vertical-category.js"></script> 
 
-<!-- Main Scripts--> 
-
+<!-- Main Scripts-->
+<script src="js/login.js"></script>
 <script src="assets/js/search.js"></script> 
 <script src="assets/js/ttmenu.js"></script> 
 <script src="assets/js/wow.min.js"></script> 
