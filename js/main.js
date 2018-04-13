@@ -1,27 +1,30 @@
+let productsList = document.getElementById('products_list');
+let search = document.getElementById('search-field');
+
 window.onload = buildTable;
-
-
 
 //function that will allow to search products by name
 
 function buildTable() {
-    //Create recommender object - it loads its state from local storage
+//Create recommender object - it loads its state from local storage
     let recommender = new Recommender();
 
-    let search = document.getElementById('search-field');
     showRecommendation();
 
-
+// Search function that will send request to the server and insert the object response to the list of products
 
     search.addEventListener('keydown', (e) => {
-
         if(e.key == 'Enter'){
 
-            let searchProduct = search.value;
-            let productsList = document.getElementById('products_list');
-            recommender.addKeyword(searchProduct);
-            showRecommendation();
 
+// Remove default behaviour
+            e.preventDefault();
+
+            let searchProduct = search.value;
+
+            recommender.addKeyword(searchProduct);
+
+// AJAX request
             console.log(searchProduct);
             fetch('../php/insertProducts.php', {
                 method: 'POST',
@@ -35,33 +38,35 @@ function buildTable() {
             })
             .then(function(response){
             console.log(response);
+            showRecommendation();
             productsList.innerHTML = response;
+
             })
-            .catch(function(e){
-                console.log(e);
-            })
+
             }
     })
 }
 
+// Function that by default will output random product to the recommendation element or if the user
+// was alredy searching products it will output the product that was searched the most times
+
 function showRecommendation() {
 
-    //Create recommender object - it loads its state from local storage
+//Create recommender object - it loads its state from local storage
     let recommender = new Recommender();
 
     let recommendation = document.getElementById('recommendation');
     let recommendedProduct = recommender.getTopKeyword();
     console.log(recommendedProduct);
 
-
-
-    // recommendation.innerHTML = `<div class=""> <img src="assets/images/b-14.jpg" alt="" class="img-responsive" ><br>
-    //         <p class="font-15">Test V-neck Blue Shirt</p>
-    //         <img src="assets/images/star-rating.png" alt="" class="img-responsive mar-bot-7">
-    //         <p class="font-15 orange font-bold"><del class="light-grey lighter">£49.00</del>£20.00</p>
-    //         </div>`;
-
-    fetch('../php/recommendation.php', {
+    if (recommendedProduct === ''){
+        recommendation.innerHTML = `<div class=""> <img src="assets/images/b-14.jpg" alt="" class="img-responsive" ><br>
+            <p class="font-15">Test V-neck Blue Shirt</p>
+            <img src="assets/images/star-rating.png" alt="" class="img-responsive mar-bot-7">
+            <p class="font-15 orange font-bold"><del class="light-grey lighter">£49.00</del>£20.00</p>
+            </div>`;
+    }else{
+            fetch('../php/recommendation.php', {
                 method: 'POST',
                 body: 'name=' + recommendedProduct,
                 headers: new Headers({
@@ -78,12 +83,10 @@ function showRecommendation() {
             .catch(function(e){
                 console.log(e);
             })
-
-
-
-
-
     }
+}
+
+// function that will add the product to localStorage basket
 
 function addToBasket(id){
 
@@ -115,13 +118,6 @@ function addToBasket(id){
     .catch(function(e){
         console.log(e);
     })
-
-    // let product = {'productId': id,
-    //                'productName': 'x'}
-
-
-
-    // localStorage.setItem('basket', )
 
 }
 
